@@ -1,0 +1,91 @@
+import logoLight from "../../assets/logo-light.png";
+import { useForm } from "react-hook-form";
+import { useLogin } from "./useLogin";
+import Loading from "../../ui/Loading";
+import { useRedirect } from "./useRedirect";
+
+const Login = () => {
+  const { register, handleSubmit, formState: errors } = useForm();
+  const { isPending: isLoading } = useRedirect();
+  const { login, isPending } = useLogin();
+
+  function submitData(data) {
+    const { email, password } = data;
+    if (email && password) {
+      login({ email, password });
+    }
+  }
+
+  if (isLoading) return <Loading />;
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="flex w-full flex-col gap-10">
+        <img src={logoLight} className="max-w-auto mx-auto w-[150px]" />
+
+        <h1 className="text-center text-3xl font-bold">
+          Login to your account
+        </h1>
+        <form
+          onSubmit={handleSubmit(submitData)}
+          className="mx-auto w-[90%] space-y-4 overflow-hidden rounded-lg bg-white p-10 md:w-[500px]"
+        >
+          <div className="flex flex-col space-y-1">
+            <label
+              id="email"
+              className="font-sans text-sm font-semibold text-slate-800 antialiased dark:text-white"
+            >
+              Email
+            </label>
+            <input
+              id="email"
+              {...register("email", {
+                required: "Fill the Field",
+              })}
+              defaultValue="mf@gmail.com"
+              disabled={isPending}
+              placeholder="someone@example.com"
+              type="email"
+              className="peer rounded-md border border-slate-200 bg-transparent px-2.5 py-2 text-sm text-slate-800 shadow-sm outline-none ring ring-transparent transition-all duration-300 ease-in placeholder:text-slate-600/60 hover:border-green-400 hover:ring-slate-800/10 focus:outline-none focus:ring-slate-800/10 data-[error=true]:border-red-500 data-[success=true]:border-green-500 data-[icon-placement=end]:pe-9 data-[icon-placement=start]:ps-9 dark:text-white"
+              data-error="false"
+              data-success="false"
+              data-icon-placement=""
+            />
+            {/* </div> */}
+            <span className="text-red-400">{errors?.email?.message}</span>
+          </div>
+          <div className="relative w-full">
+            <label
+              id="password"
+              className="font-sans text-sm font-semibold text-slate-800 antialiased dark:text-white"
+            >
+              Password
+            </label>
+            <input
+              defaultValue="mohamed"
+              id="password"
+              {...register("password", {
+                required: "Fill the Field",
+              })}
+              disabled={isPending}
+              placeholder="Password"
+              type="password"
+              className="peer w-full rounded-md border border-slate-200 bg-transparent px-2.5 py-2 text-sm text-slate-800 shadow-sm outline-none ring ring-transparent transition-all duration-300 ease-in placeholder:text-slate-600/60 hover:border-green-400 hover:ring-slate-800/10 focus:outline-none focus:ring-slate-800/10 data-[error=true]:border-red-500 data-[success=true]:border-green-500 data-[icon-placement=end]:pe-9 data-[icon-placement=start]:ps-9 dark:text-white"
+              data-error="false"
+              data-success="false"
+              data-icon-placement=""
+            />
+          </div>
+          <button
+            type="submit"
+            disabled={isPending}
+            className="w-full rounded-md border border-blue-500 bg-blue-500 px-4 py-3 text-center font-sans text-sm font-semibold text-blue-50 shadow-sm transition-all duration-300 ease-in hover:border-blue-400 hover:bg-blue-400 hover:shadow-md focus:shadow-none data-[width=full]:w-full data-[shape=pill]:rounded-full"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Login;

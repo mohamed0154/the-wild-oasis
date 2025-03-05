@@ -1,0 +1,24 @@
+@import "tw-elements-react/dist/css/tw-elements-react.min.css";
+
+@tailwind base;
+
+@layer base {
+  html {
+    @apply text-neutral-800;
+  }
+  html.dark {
+    @apply text-neutral-50;
+    @apply bg-neutral-800;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;
+@layer components {
+  .list-link {
+    @apply hover:bg-slate-300/20 block p-3 ps-4;
+  }
+  .filter-style {
+    @apply py-1 px-3 hover:bg-blue-600  cursor-pointer hover:text-slate-100 rounded-md transition-all duration-200;
+  }
+}
