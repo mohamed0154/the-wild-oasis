@@ -7,14 +7,15 @@ export function useUpdateUser() {
   const { mutate: updateUser, isPending } = useMutation({
     mutationFn: UpdateUserApi,
 
-    onSuccess() {
+    onSuccess(user) {
       toast.success("User Updated successfuly");
+      queryClient.setQueryData("user", user);
       queryClient.invalidateQueries({
         queryKey: ["users"],
       });
     },
-    onError(er) {
-      toast.error(er.message);
+    onError() {
+      toast.error("There's a Proplem");
     },
   });
 
