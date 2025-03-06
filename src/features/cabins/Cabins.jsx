@@ -37,7 +37,7 @@ const Cabins = () => {
 
   return (
     <>
-      <div className="mx-auto mt-10 h-[600px] max-sm:mx-auto max-sm:w-[350px]">
+      <div className="mx-auto mt-10 max-sm:mx-auto max-sm:w-[350px]">
         <div className="my-8 flex items-center justify-between gap-3 max-sm:flex-col">
           <h1 className="text-3xl font-bold">All Cabins</h1>
           <Filter
@@ -52,7 +52,7 @@ const Cabins = () => {
           />
         </div>
         <div className="max-h-[550px] overflow-auto rounded-lg border border-surface bg-white">
-          <table className="w-full">
+          <table className="max-h-[600px] w-full overflow-auto">
             <thead className="border-b border-surface bg-slate-100 text-sm font-medium text-foreground dark:bg-surface-dark">
               <tr>
                 <th className="px-2.5 py-4 text-center font-semibold">Name</th>
@@ -74,7 +74,7 @@ const Cabins = () => {
           </table>
         </div>
       </div>
-      <div className="mb-5 mt-20 flex justify-center">
+      <div className="my-5 flex items-end justify-center">
         <FormModal>
           <Dialog.Trigger className="rounded-md bg-[#4f46e5] px-7 py-3 text-white hover:bg-[#4e46e5e5]">
             Create Cabin

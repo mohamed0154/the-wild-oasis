@@ -12,7 +12,16 @@ const UpdateUser = () => {
 
   function updateUser(e) {
     e.preventDefault();
-    updateUserApi({ fullName, avatar });
+    updateUserApi(
+      { fullName, avatar },
+      {
+        onSuccess: () => {
+          setUpdateAvatar(null);
+          setUpdateName("");
+          e.target.reset();
+        },
+      },
+    );
   }
   function updateUserPass(e) {
     e.preventDefault();
@@ -24,11 +33,11 @@ const UpdateUser = () => {
       <h1 className="my-6 mt-16 text-3xl font-semibold">Update User</h1>
       <form
         onSubmit={(e) => updateUser(e)}
-        className="mb-10 space-y-7 rounded-lg bg-white p-5 pb-7 shadow-md"
+        className="mb-10 w-full space-y-7 overflow-hidden rounded-lg bg-white px-3 py-3 pb-7 shadow-md"
       >
-        <div className="mb-4 flex items-center gap-5"></div>
+        {/* <div className="mb-4 flex items-center gap-5"></div> */}
 
-        <div className="mb-4 mt-2 flex gap-5 max-md:flex-col md:items-center">
+        <div className="mb-4 mt-2 flex gap-5 max-md:flex-col max-md:gap-2 md:items-center">
           <Typography
             as="label"
             htmlFor="email"
@@ -47,7 +56,7 @@ const UpdateUser = () => {
           />
         </div>
 
-        <div className="mb-4 flex gap-5 max-md:flex-col md:items-center">
+        <div className="mb-4 flex gap-5 max-md:flex-col max-md:gap-2 md:items-center">
           <Typography
             as="label"
             htmlFor="fullName"
@@ -65,12 +74,12 @@ const UpdateUser = () => {
             className="max-w-[350px]"
           />
         </div>
-        <div className="mb-4 flex max-md:flex-col max-md:gap-4 md:items-center">
+        <div className="mb-4 flex max-md:flex-col max-md:gap-2 md:items-center">
           <h4 className="text-sm font-semibold leading-snug text-gray-900 md:basis-[185px]">
             Update Avatar
           </h4>
-          <Typography htmlFor="image">
-            <label className="flex h-9 w-[350px] cursor-pointer items-center justify-center rounded-full border border-slate-400 bg-transparent text-xs font-semibold leading-4 text-slate-800 shadow hover:bg-indigo-700 hover:text-white focus:outline-none">
+          <Typography htmlFor="image" className="">
+            <label className="flex h-9 cursor-pointer items-center justify-center rounded-full border border-slate-400 bg-transparent text-xs font-semibold leading-4 text-slate-800 shadow hover:bg-indigo-700 hover:text-white focus:outline-none max-md:max-w-[350px] md:w-[350px]">
               <input
                 type="file"
                 id="image"
@@ -84,7 +93,10 @@ const UpdateUser = () => {
         </div>
 
         <div className="ms-auto w-fit space-x-2">
-          <Button className="border-none bg-transparent text-slate-700 hover:bg-red-500 hover:text-white hover:outline-offset-2 hover:ring-2 hover:ring-red-300">
+          <Button
+            type="reset"
+            className="border-none bg-transparent text-slate-700 hover:bg-red-500 hover:text-white hover:outline-offset-2 hover:ring-2 hover:ring-red-300"
+          >
             Cancel
           </Button>
           <Button
@@ -122,7 +134,10 @@ const UpdateUser = () => {
         </div>
 
         <div className="ms-auto w-fit space-x-2">
-          <Button className="border-none bg-transparent text-slate-700 hover:bg-red-500 hover:text-white hover:outline-offset-2 hover:ring-2 hover:ring-red-300">
+          <Button
+            type="reset"
+            className="border-none bg-transparent text-slate-700 hover:bg-red-500 hover:text-white hover:outline-offset-2 hover:ring-2 hover:ring-red-300"
+          >
             Cancel
           </Button>
           <Button

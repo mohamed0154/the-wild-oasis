@@ -8,7 +8,7 @@ const SideBar = () => {
   return (
     <>
       <DashList>
-        <div className="absolute top-2 ms-5 mt-3 max-sm:top-16">
+        <div className="absolute top-1 ms-5 mt-3">
           <Drawer.Trigger as={Button} className="hidden max-lg:block">
             <FaBars />
           </Drawer.Trigger>

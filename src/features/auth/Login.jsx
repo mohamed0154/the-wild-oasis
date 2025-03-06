@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useLogin } from "./useLogin";
 import Loading from "../../ui/Loading";
 import { useRedirect } from "./useRedirect";
+import { Button } from "@material-tailwind/react";
 
 const Login = () => {
   const { register, handleSubmit, formState: errors } = useForm();
@@ -27,9 +28,9 @@ const Login = () => {
         </h1>
         <form
           onSubmit={handleSubmit(submitData)}
-          className="mx-auto w-[90%] space-y-4 overflow-hidden rounded-lg bg-white p-10 md:w-[500px]"
+          className="mx-auto w-[90%] space-y-4 overflow-hidden rounded-lg bg-white px-3 py-10 md:w-[500px] md:px-10"
         >
-          <div className="flex flex-col space-y-1">
+          <div className="flex flex-col gap-2">
             <label
               id="email"
               className="font-sans text-sm font-semibold text-slate-800 antialiased dark:text-white"
@@ -53,7 +54,7 @@ const Login = () => {
             {/* </div> */}
             <span className="text-red-400">{errors?.email?.message}</span>
           </div>
-          <div className="relative w-full">
+          <div className="flex flex-col gap-2">
             <label
               id="password"
               className="font-sans text-sm font-semibold text-slate-800 antialiased dark:text-white"
@@ -78,7 +79,7 @@ const Login = () => {
           <button
             type="submit"
             disabled={isPending}
-            className="w-full rounded-md border border-blue-500 bg-blue-500 px-4 py-3 text-center font-sans text-sm font-semibold text-blue-50 shadow-sm transition-all duration-300 ease-in hover:border-blue-400 hover:bg-blue-400 hover:shadow-md focus:shadow-none data-[width=full]:w-full data-[shape=pill]:rounded-full"
+            className="w-full translate-y-4 rounded-md border border-blue-500 bg-blue-500 px-4 py-3 text-center font-sans text-sm font-semibold text-blue-50 shadow-sm transition-all duration-300 ease-in hover:border-blue-400 hover:bg-blue-400 hover:shadow-md focus:shadow-none data-[width=full]:w-full data-[shape=pill]:rounded-full"
           >
             Login
           </button>

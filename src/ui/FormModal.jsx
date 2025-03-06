@@ -47,11 +47,14 @@ const FormModal = ({ cabin = {}, children }) => {
     <Dialog open={open} onChange={setOpen} size="md">
       {children}
       <Dialog.Overlay>
-        <Dialog.Content>
+        <Dialog.Content className="max-sm:w-[95%]">
           {/* //Header */}
           <ModalHeader />
           {/* Form */}
-          <form onSubmit={handleSubmit(submitData)} className="mt-6">
+          <form
+            onSubmit={handleSubmit(submitData)}
+            className="mt-6 overflow-auto max-sm:h-[70vh]"
+          >
             <div className="mb-4 mt-2 space-y-1.5">
               <Typography
                 as="label"

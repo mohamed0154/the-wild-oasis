@@ -7,14 +7,14 @@ const Header = () => {
 
   return (
     <div className="border-s border-slate-400/20 bg-white p-3 dark:bg-slate-800">
-      <div className="mx-auto flex w-fit items-center gap-5 sm:me-10 sm:ms-auto">
+      <div className="ms-auto flex w-fit items-center gap-2">
         <div className="flex items-center gap-3">
           <img
             src={user?.user_metadata?.avatar}
             className="h-[40px] w-[40px] rounded-full"
             alt=""
           />
-          <span className="font-sans text-sm font-semibold">
+          <span className="font-sans text-sm font-semibold max-sm:max-h-11 max-sm:max-w-36 max-sm:overflow-hidden">
             {user?.user_metadata?.fullName}
           </span>
         </div>
