@@ -1,5 +1,6 @@
 // const withMT = require("@material-tailwind/react/utils/withMT");
 import { mtConfig } from "@material-tailwind/react";
+
 /** @type {import('tailwindcss').Config} */
 
 export default {
@@ -22,6 +23,6 @@ export default {
       sans: "Cairo, sans-serif",
     },
   },
-  plugins: [mtConfig],
+  plugins: [mtConfig, require("tailwind-scrollbar")],
   darkMode: "class",
 };

@@ -1,13 +1,13 @@
-import React, { Suspense } from "react";
+import React, { createContext, Suspense, useState } from "react";
 const AppLayout = React.lazy(() => import("./pages/AppLayout"));
 const Home = React.lazy(() => import("./features/dashboard/Home"));
 const Cabins = React.lazy(() => import("./features/cabins/Cabins"));
 const Settings = React.lazy(() => import("./features/settings/Settings"));
-const BookingsShow = React.lazy(() =>
-  import("./features/Booking/BookingsShow")
+const BookingsShow = React.lazy(
+  () => import("./features/Booking/BookingsShow"),
 );
-const BookingDetails = React.lazy(() =>
-  import("./features/Booking/BookingDetails")
+const BookingDetails = React.lazy(
+  () => import("./features/Booking/BookingDetails"),
 );
 const Login = React.lazy(() => import("./features/auth/Login"));
 const ProtectedRoute = React.lazy(() => import("./pages/ProtectedRoute"));
@@ -21,35 +21,48 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import Loading from "./ui/Loading";
 
+export const DarkContext = createContext(false);
+
 function App() {
   const queryClient = new QueryClient();
+  const [darkMood, setDarkMood] = useState();
+
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools />
       <BrowserRouter>
         <Suspense fallback={<Loading />}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <AppLayout />
-                </ProtectedRoute>
-              }
-            >
-              <Route index element={<Navigate replace to="/dashboard" />} />
-              <Route path="/dashboard" element={<Home />} />
-              <Route path="/cabins" element={<Cabins />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/bookings" element={<BookingsShow />} />
-              <Route path="/bookings/:id" element={<BookingDetails />} />
-              <Route path="/createUser" element={<CreateUser />} />
-              <Route path="/updateUser" element={<UpdateUser />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
+          <DarkContext.Provider
+            value={{
+              darkMood,
+              setDarkMood,
+            }}
+          >
+            <div className={`${darkMood && "dark"}`}>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <ProtectedRoute>
+                      <AppLayout />
+                    </ProtectedRoute>
+                  }
+                >
+                  <Route index element={<Navigate replace to="/dashboard" />} />
+                  <Route path="/dashboard" element={<Home />} />
+                  <Route path="/cabins" element={<Cabins />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/bookings" element={<BookingsShow />} />
+                  <Route path="/bookings/:id" element={<BookingDetails />} />
+                  <Route path="/createUser" element={<CreateUser />} />
+                  <Route path="/updateUser" element={<UpdateUser />} />
+                  <Route path="*" element={<NotFound />} />
+                </Route>
 
-            <Route path="/login" element={<Login />} />
-          </Routes>
+                <Route path="/login" element={<Login />} />
+              </Routes>
+            </div>
+          </DarkContext.Provider>
         </Suspense>
       </BrowserRouter>
       <Toaster

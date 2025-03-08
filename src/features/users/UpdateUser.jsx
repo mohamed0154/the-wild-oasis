@@ -2,6 +2,7 @@ import { Button, Input, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import { useCheckAuth } from "../auth/useCheckAuth";
 import { useUpdateUser } from "./useUpdateUser";
+import GlobalButton from "../../ui/GlobalButton";
 
 const UpdateUser = () => {
   const [fullName, setUpdateName] = useState();
@@ -30,10 +31,12 @@ const UpdateUser = () => {
 
   return (
     <div className="text-slate-700">
-      <h1 className="my-6 mt-16 text-3xl font-semibold">Update User</h1>
+      <h1 className="my-6 mt-16 text-3xl font-semibold dark:text-slate-50">
+        Update User
+      </h1>
       <form
         onSubmit={(e) => updateUser(e)}
-        className="mb-10 w-full space-y-7 overflow-hidden rounded-lg bg-white px-3 py-3 pb-7 shadow-md"
+        className="mb-10 w-full space-y-7 overflow-hidden rounded-lg bg-white px-3 py-3 pb-7 shadow-md dark:bg-slate-800"
       >
         {/* <div className="mb-4 flex items-center gap-5"></div> */}
 
@@ -52,7 +55,7 @@ const UpdateUser = () => {
             value={user?.email}
             id="email"
             disabled=""
-            className="max-w-[350px]"
+            className="max-w-[350px] dark:border-slate-100/20"
           />
         </div>
 
@@ -71,11 +74,11 @@ const UpdateUser = () => {
             type="text"
             defaultValue=""
             onChange={(e) => setUpdateName(e.target.value)}
-            className="max-w-[350px]"
+            className="max-w-[350px] dark:border-slate-100/20"
           />
         </div>
         <div className="mb-4 flex max-md:flex-col max-md:gap-2 md:items-center">
-          <h4 className="text-sm font-semibold leading-snug text-gray-900 md:basis-[185px]">
+          <h4 className="text-sm font-semibold leading-snug text-gray-900 dark:text-slate-200 md:basis-[185px]">
             Update Avatar
           </h4>
           <Typography htmlFor="image" className="">
@@ -93,24 +96,14 @@ const UpdateUser = () => {
         </div>
 
         <div className="ms-auto w-fit space-x-2">
-          <Button
-            type="reset"
-            className="border-none bg-transparent text-slate-700 hover:bg-red-500 hover:text-white hover:outline-offset-2 hover:ring-2 hover:ring-red-300"
-          >
-            Cancel
-          </Button>
-          <Button
-            type="submit"
-            disabled={isPending}
-            className="border-none bg-indigo-700 hover:bg-indigo-600 hover:outline-offset-2 hover:ring-2"
-          >
-            Update User
-          </Button>
+          <GlobalButton name="Cancel" type="reset" />
+
+          <GlobalButton name="Update User" type="submit" status={isPending} />
         </div>
       </form>
       <form
         onSubmit={(e) => updateUserPass(e)}
-        className="mb-10 space-y-7 rounded-lg bg-white p-5 pb-7 shadow-md"
+        className="mb-10 space-y-7 rounded-lg bg-white p-5 pb-7 shadow-md dark:bg-slate-800"
       >
         <div className="mb-4 flex items-center gap-5"></div>
 
@@ -129,7 +122,7 @@ const UpdateUser = () => {
             type="password"
             defaultValue=""
             onChange={(e) => setNewPass(e.target.value)}
-            className="max-w-[350px]"
+            className="max-w-[350px] dark:border-slate-50/20"
           />
         </div>
 

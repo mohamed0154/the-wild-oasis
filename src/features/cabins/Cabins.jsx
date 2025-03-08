@@ -37,7 +37,7 @@ const Cabins = () => {
 
   return (
     <>
-      <div className="mx-auto mt-10 max-sm:mx-auto max-sm:w-[350px]">
+      <div className="mt-10 max-sm:mx-auto max-sm:w-[350px]">
         <div className="my-8 flex items-center justify-between gap-3 max-sm:flex-col">
           <h1 className="text-3xl font-bold">All Cabins</h1>
           <Filter
@@ -51,8 +51,8 @@ const Cabins = () => {
             ]}
           />
         </div>
-        <div className="max-h-[550px] overflow-auto rounded-lg border border-surface bg-white">
-          <table className="max-h-[600px] w-full overflow-auto">
+        <div className="scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-200 max-h-[550px] overflow-auto rounded-lg border border-surface bg-white dark:bg-slate-800">
+          <table className="scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-200 max-h-[600px] w-full overflow-auto">
             <thead className="border-b border-surface bg-slate-100 text-sm font-medium text-foreground dark:bg-surface-dark">
               <tr>
                 <th className="px-2.5 py-4 text-center font-semibold">Name</th>

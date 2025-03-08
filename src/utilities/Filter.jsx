@@ -11,7 +11,7 @@ const Filter = ({ keyName, labels }) => {
   }
 
   return (
-    <div className="flex items-center gap-1 rounded-md border bg-white p-1">
+    <div className="flex items-center gap-1 rounded-md border bg-white p-1 dark:bg-slate-800">
       {labels.map((item, key) => (
         <span
           key={key}

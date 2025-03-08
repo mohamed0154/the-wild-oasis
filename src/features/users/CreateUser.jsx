@@ -1,15 +1,10 @@
-import { Button, Input, Typography } from "@material-tailwind/react";
+import { Input, Typography } from "@material-tailwind/react";
 import { useForm } from "react-hook-form";
 import { useSignup } from "../auth/useSignup";
+import GlobalButton from "../../ui/GlobalButton";
 
 const CreateUser = () => {
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    reset,
-    formState: errors,
-  } = useForm();
+  const { register, handleSubmit, getValues, formState: errors } = useForm();
   const { signup, isPending } = useSignup();
   function submitData(data) {
     signup(data);
@@ -17,10 +12,12 @@ const CreateUser = () => {
 
   return (
     <div className="text-slate-700">
-      <h1 className="my-6 mt-16 text-3xl font-semibold">Create User</h1>
+      <h1 className="my-6 mt-16 text-3xl font-semibold dark:text-slate-200">
+        Create User
+      </h1>
       <form
         onSubmit={handleSubmit(submitData)}
-        className="space-y-7 rounded-lg bg-white p-7 pb-8 shadow-md"
+        className="space-y-7 rounded-lg bg-white p-7 pb-8 shadow-md dark:bg-slate-800"
       >
         <div className="mb-4 flex items-center gap-5">
           <Typography
@@ -40,7 +37,7 @@ const CreateUser = () => {
                 required: "Fill The Field",
               })}
               defaultValue=""
-              className="max-w-[350px]"
+              className="max-w-[350px] dark:border-slate-50/20"
             />
             {errors?.fullName && (
               <span className="bg-red-500 p-2 text-white">
@@ -72,7 +69,7 @@ const CreateUser = () => {
               },
             })}
             disabled=""
-            className="max-w-[350px]"
+            className="max-w-[350px] dark:border-slate-50/20"
           />
         </div>
 
@@ -97,7 +94,7 @@ const CreateUser = () => {
               },
             })}
             defaultValue=""
-            className="max-w-[350px]"
+            className="max-w-[350px] dark:border-slate-50/20"
           />
         </div>
         <div className="mb-4 flex items-center gap-5">
@@ -118,23 +115,12 @@ const CreateUser = () => {
               validate: (value) => value === getValues().password,
             })}
             defaultValue=""
-            className="max-w-[350px]"
+            className="max-w-[350px] dark:border-slate-50/20"
           />
         </div>
         <div className="ms-auto w-fit space-x-2">
-          <Button
-            onClick={() => reset()}
-            className="border-none bg-transparent text-slate-700 hover:bg-red-500 hover:text-white hover:outline-offset-2 hover:ring-2 hover:ring-red-300"
-          >
-            Cancel
-          </Button>
-          <Button
-            disabled={isPending}
-            type="submit"
-            className="border-none bg-indigo-700 hover:bg-indigo-600 hover:outline-offset-2 hover:ring-2"
-          >
-            Create User
-          </Button>
+          <GlobalButton name="Cancel" type="reset" />
+          <GlobalButton name="Create User" type="submit" status={isPending} />
         </div>
       </form>
     </div>

@@ -7,13 +7,13 @@ const SideBarLinkItem = ({ linkName, to, icon }) => {
     <>
       <Link to={to} className="ms-5">
         {" "}
-        <List.Item className="flex items-center gap-2">
-          {icon}
-          <span className="font-semibold">{linkName}</span>
+        <List.Item className="flex items-center gap-2 dark:hover:bg-slate-900">
+          <span className="dark:text-blue-300">{icon}</span>
+          <span className="font-semibold dark:text-slate-200">{linkName}</span>
         </List.Item>
       </Link>
 
-      <hr className="-mx-3 my-3 border-secondary" />
+      <hr className="-mx-3 my-3 border-secondary dark:border-slate-100/10" />
     </>
   );
 };

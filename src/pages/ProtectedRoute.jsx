@@ -16,12 +16,19 @@ const ProtectedRoute = ({ children }) => {
         navigate("/login");
       }
     },
-    [isAuthenticated, isPending, navigate]
+    [isAuthenticated, isPending, navigate],
   );
 
-  if (isPending) return <Loading />;
+  if (isPending)
+    return (
+      <div className="relative h-[100vh] dark:bg-slate-900">
+        <Loading />;
+      </div>
+    );
 
-  return <div>{children}</div>;
+  return (
+    <div className="dark:bg-slate-900 dark:text-slate-200">{children}</div>
+  );
 };
 
 export default ProtectedRoute;

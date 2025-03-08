@@ -37,12 +37,12 @@ const Settings = () => {
   if (isPending) return <Loading />;
   return (
     <div className="text-slate-700">
-      <h1 className="my-6 mt-16 text-3xl font-semibold">
+      <h1 className="my-6 mt-16 text-3xl font-semibold dark:text-slate-200">
         Update hotel settings
       </h1>
       <form
         onSubmit=""
-        className="space-y-7 rounded-lg bg-white p-5 pb-8 shadow-md"
+        className="space-y-7 rounded-lg bg-white p-5 pb-8 shadow-md dark:bg-slate-800"
       >
         <div className="mb-4 mt-2 flex items-center gap-5">
           <Typography
@@ -60,7 +60,7 @@ const Settings = () => {
             id="minBookingLength"
             onBlur={(e) => updateSettings("minBookingLength", e.target.value)}
             disabled={isEditting}
-            className="max-w-[350px]"
+            className="max-w-[350px] dark:border-slate-50/20"
           />
         </div>
 
@@ -79,7 +79,7 @@ const Settings = () => {
             type="number"
             defaultValue={maxBookingLength}
             onBlur={(e) => updateSettings("maxBookingLength", e.target.value)}
-            className="max-w-[350px]"
+            className="max-w-[350px] dark:border-slate-50/20"
           />
         </div>
         <div className="mb-4 flex items-center gap-5">
@@ -99,7 +99,7 @@ const Settings = () => {
             onBlur={(e) =>
               updateSettings("maxGuestsPerbooking", e.target.value)
             }
-            className="max-w-[350px]"
+            className="max-w-[350px] dark:border-slate-50/20"
           />
         </div>
         <div className="mb-4 flex items-center gap-5">
@@ -117,7 +117,7 @@ const Settings = () => {
             type="number"
             defaultValue={breakfastPrice}
             onBlur={(e) => updateSettings("breakfastPrice", e.target.value)}
-            className="max-w-[350px]"
+            className="max-w-[350px] dark:border-slate-50/20"
           />
         </div>
       </form>

@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
 import { useCheckAuth } from "../features/auth/useCheckAuth";
 import { FiUser } from "react-icons/fi";
+import { MdLightMode } from "react-icons/md";
+import { useContext } from "react";
+import { DarkContext } from "../App";
+import { FaMoon } from "react-icons/fa";
 
 const Header = () => {
   const { user = {} } = useCheckAuth();
+  const { darkMood, setDarkMood } = useContext(DarkContext);
 
   return (
     <div className="border-s border-slate-400/20 bg-white p-3 dark:bg-slate-800">
@@ -22,13 +27,17 @@ const Header = () => {
           <Link to="/updateUser" className="rounded-full p-2 hover:bg-slate-50">
             <FiUser className="text-2xl text-blue-500" />
           </Link>
-          {/* <FaSun /> */}
-          {/* <span
-            onClick={() => setDarkMode((dark) => !dark)}
-            className="hover:bg-slate-50 p-2 rounded-full"
+
+          <span
+            onClick={() => setDarkMood((dark) => !dark)}
+            className="cursor-pointer rounded-full p-2 hover:bg-slate-50 dark:hover:bg-slate-50"
           >
-            <MdLightMode className="hover:bg-slate-50 text-2xl text-blue-500" />
-          </span> */}
+            {darkMood ? (
+              <MdLightMode className="text-2xl text-blue-500" />
+            ) : (
+              <FaMoon color="#6054fd" size={25} className="m-0 text-blue-500" />
+            )}
+          </span>
         </div>
       </div>
     </div>

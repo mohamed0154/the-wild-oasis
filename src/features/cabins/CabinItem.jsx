@@ -27,7 +27,7 @@ const CabinItem = ({ cabin = {} }) => {
         <tr className="last:border-1 border-b border-surface">
           <td className="py-1 font-semibold">{name}</td>
           <td className="py-1">{max_capacity}</td>
-          <td className="py-1">{regular_price}</td>
+          <td className="py-1">${regular_price} </td>
           <td className="py-1">{discount || "-"}</td>
           <td className="py-1">
             <img
