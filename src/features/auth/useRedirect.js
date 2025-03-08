@@ -12,7 +12,8 @@ export function useRedirect() {
         navigate("/dashboard");
       }
     },
-    [isAuthenticated, isPending, navigate]
+    [isAuthenticated, isPending, navigate],
   );
+
   return { isPending };
 }

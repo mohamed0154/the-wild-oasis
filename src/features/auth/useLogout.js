@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 export function useLogout() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
   const { mutate, isPending } = useMutation({
     mutationFn: logout,
     onSuccess() {
@@ -16,5 +17,6 @@ export function useLogout() {
       toast.error(er.message);
     },
   });
+
   return { mutate, isPending };
 }

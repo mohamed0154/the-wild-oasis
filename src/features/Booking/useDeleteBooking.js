@@ -7,12 +7,14 @@ export function useDeleteBooking() {
 
   const { mutate: deleteBooking } = useMutation({
     mutationFn: deleteBookingApi,
+
     onSuccess() {
       toast.success("The Booking Deleted Successfuly");
       queryClient.invalidateQueries({
         queryKey: ["bookings"],
       });
     },
+
     onError() {
       toast.error("There's a Proplem");
     },

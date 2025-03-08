@@ -7,7 +7,6 @@ import { useDuplicateCabin } from "./useDuplicateCabin";
 const CabinMutation = ({ deleteItem, cabin, formModal }) => {
   const { name, regular_price, max_capacity, discount, description, image } =
     cabin;
-
   const { duplicateCabin: duplicateCabinApi } = useDuplicateCabin();
 
   function duplicateCabin() {

@@ -1,8 +1,9 @@
+import Loading from "../../ui/Loading";
+
 import { useQuery } from "@tanstack/react-query";
 import { FaCheck, FaDollarSign, FaHome } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import { showBooking } from "./bookingServices";
-import Loading from "../../ui/Loading";
 import { formatCurrency } from "../../utilities/helpers";
 
 const BookingDetails = () => {
@@ -14,7 +15,13 @@ const BookingDetails = () => {
     queryFn: () => showBooking(id),
   });
 
-  if (isPending) return <Loading />;
+  if (isPending)
+    return (
+      <div className="relative h-[100vh] dark:bg-slate-900">
+        <Loading />
+      </div>
+    );
+
   return (
     <div className="mt-5">
       <div className="my-7 mt-14 flex items-center justify-between">

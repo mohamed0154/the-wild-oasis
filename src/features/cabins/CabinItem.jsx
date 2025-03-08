@@ -1,5 +1,6 @@
 import CabinMutation from "./CabinMutation";
 import FormModal from "../../ui/FormModal";
+
 import { Dialog } from "@material-tailwind/react";
 import { FaEdit } from "react-icons/fa";
 import { useDeleteCabin } from "./useDeleteCabin";
@@ -14,7 +15,6 @@ const CabinItem = ({ cabin = {} }) => {
     discount,
     image,
   } = cabin;
-
   const { deleteCabin } = useDeleteCabin();
 
   function deleteItem(cabinId) {

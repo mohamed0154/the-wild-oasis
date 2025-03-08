@@ -1,4 +1,4 @@
-import { Button, Input, Typography } from "@material-tailwind/react";
+import { Input, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import { useCheckAuth } from "../auth/useCheckAuth";
 import { useUpdateUser } from "./useUpdateUser";

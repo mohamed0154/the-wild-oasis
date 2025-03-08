@@ -1,14 +1,12 @@
+import CabinItem from "./CabinItem";
+import FormModal from "../../ui/FormModal";
+import Filter from "../../utilities/Filter";
+import Loading from "../../ui/Loading";
+
 import { getCabins } from "./cabinServices";
 import { useQuery } from "@tanstack/react-query";
-import CabinItem from "./CabinItem";
-
-import FormModal from "../../ui/FormModal";
-// import CreateCabin from "./CreateCabin";
 import { Dialog } from "@material-tailwind/react";
-import Loading from "../../ui/Loading";
-import Filter from "../../utilities/Filter";
 import { useSearchParams } from "react-router-dom";
-// import Spinner from "../../ui/Spinner";
 
 const Cabins = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -33,7 +31,12 @@ const Cabins = () => {
     filterData = data;
   }
 
-  if (isPending) return <Loading />;
+  if (isPending)
+    return (
+      <div className="relative h-[100vh] dark:bg-slate-900">
+        <Loading />
+      </div>
+    );
 
   return (
     <>
@@ -51,8 +54,8 @@ const Cabins = () => {
             ]}
           />
         </div>
-        <div className="scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-200 max-h-[550px] overflow-auto rounded-lg border border-surface bg-white dark:bg-slate-800">
-          <table className="scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-200 max-h-[600px] w-full overflow-auto">
+        <div className="max-h-[550px] overflow-auto rounded-lg border border-surface bg-white scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-blue-500 dark:bg-slate-800">
+          <table className="max-h-[600px] w-full overflow-auto scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-blue-500">
             <thead className="border-b border-surface bg-slate-100 text-sm font-medium text-foreground dark:bg-surface-dark">
               <tr>
                 <th className="px-2.5 py-4 text-center font-semibold">Name</th>

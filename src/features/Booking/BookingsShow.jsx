@@ -1,7 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import { showBookings } from "./bookingServices";
 import Loading from "../../ui/Loading";
 import BookingItem from "./BookingItem";
+
+import { useQuery } from "@tanstack/react-query";
+import { showBookings } from "./bookingServices";
 
 const BookingsShow = () => {
   const { data = [], isPending } = useQuery({
@@ -9,7 +10,13 @@ const BookingsShow = () => {
     queryFn: showBookings,
   });
 
-  if (isPending) return <Loading />;
+  if (isPending)
+    return (
+      <div className="relative h-[100vh] dark:bg-slate-900">
+        <Loading />
+      </div>
+    );
+
   return (
     <div className="mx-auto mt-10 h-[600px] max-sm:mx-auto max-sm:w-[350px]">
       <div className="my-8 flex items-center justify-between">

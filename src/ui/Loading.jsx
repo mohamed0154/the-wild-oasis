@@ -2,7 +2,6 @@ import { Typography } from "@material-tailwind/react";
 
 const Loading = () => {
   return (
-    // <div className="">
     <div className="absolute left-[50%] top-[45%] max-w-full translate-x-[-50%] translate-y-[-50%] animate-pulse dark:rounded-lg dark:bg-slate-800 dark:p-11">
       <Typography
         as="div"
@@ -40,7 +39,6 @@ const Loading = () => {
         &nbsp;
       </Typography>
     </div>
-    // </div>
   );
 };
 

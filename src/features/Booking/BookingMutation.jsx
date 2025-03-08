@@ -8,6 +8,7 @@ import { useDeleteBooking } from "./useDeleteBooking";
 const BookingMutaion = ({ id }) => {
   const { deleteBooking } = useDeleteBooking();
   const navigate = useNavigate();
+
   return (
     <div className="w-full text-end">
       <Menu>
@@ -21,7 +22,7 @@ const BookingMutaion = ({ id }) => {
         </Menu.Trigger>
         <Menu.Content className="min-w-[120px]">
           <Menu.Item onClick={() => navigate(`${id}`)}>
-            <FiEye className="text-indigo-500 mr-2 h-4 w-4 stroke-2" />
+            <FiEye className="mr-2 h-4 w-4 stroke-2 text-indigo-500" />
             Show
           </Menu.Item>
           {/* <Menu.Item>

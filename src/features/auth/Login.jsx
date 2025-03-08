@@ -1,7 +1,8 @@
 import logoLight from "../../assets/logo-light.png";
+import Loading from "../../ui/Loading";
+
 import { useForm } from "react-hook-form";
 import { useLogin } from "./useLogin";
-import Loading from "../../ui/Loading";
 import { useRedirect } from "./useRedirect";
 
 const Login = () => {
@@ -22,6 +23,7 @@ const Login = () => {
         <Loading />
       </div>
     );
+
   return (
     <div className="flex min-h-screen items-center justify-center dark:bg-slate-900 dark:text-slate-200">
       <div className="flex w-full flex-col gap-10">

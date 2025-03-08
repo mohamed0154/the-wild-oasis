@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
-
-// import { formatCurrency } from "../../utilities/helpers";
-// import { formatCurrency } from "../../utilities/helpers";
-import { formatCurrency } from "../../utilities/helpers";
 import BookingMutaion from "./BookingMutation";
+
+import { formatCurrency } from "../../utilities/helpers";
 
 const BookingItem = ({ booking = {} }) => {
   const {
@@ -16,6 +14,7 @@ const BookingItem = ({ booking = {} }) => {
     num_nights,
     guests: { full_name },
   } = booking;
+
   return (
     <tbody className="group text-center text-sm text-slate-700 dark:bg-slate-800 dark:text-white">
       <tr className="last:border-1 border-b border-surface">
