@@ -16,7 +16,12 @@ const Login = () => {
     }
   }
 
-  if (isLoading) return <Loading />;
+  if (isLoading)
+    return (
+      <div className="relative h-[100vh] dark:bg-slate-900">
+        <Loading />
+      </div>
+    );
   return (
     <div className="flex min-h-screen items-center justify-center dark:bg-slate-900 dark:text-slate-200">
       <div className="flex w-full flex-col gap-10">

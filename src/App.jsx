@@ -12,7 +12,7 @@ const BookingDetails = React.lazy(
 const Login = React.lazy(() => import("./features/auth/Login"));
 const ProtectedRoute = React.lazy(() => import("./pages/ProtectedRoute"));
 const CreateUser = React.lazy(() => import("./features/users/CreateUser"));
-const UpdateUser = React.lazy(() => import("./features/users/updateUser"));
+const UpdateUser = React.lazy(() => import("./features/users/UpdateUser"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -25,7 +25,7 @@ export const DarkContext = createContext(false);
 
 function App() {
   const queryClient = new QueryClient();
-  const [darkMood, setDarkMood] = useState();
+  const [darkMood, setDarkMood] = useState(true);
 
   return (
     <QueryClientProvider client={queryClient}>

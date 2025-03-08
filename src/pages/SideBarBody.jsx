@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Card } from "@material-tailwind/react";
 
 import logoLight from "../assets/logo-light.png";

@@ -78,11 +78,11 @@ const UpdateUser = () => {
           />
         </div>
         <div className="mb-4 flex max-md:flex-col max-md:gap-2 md:items-center">
-          <h4 className="text-sm font-semibold leading-snug text-gray-900 dark:text-slate-200 md:basis-[185px]">
+          <h4 className="text-sm font-semibold leading-snug text-gray-900 dark:text-slate-200 md:basis-[185px] xl:basis-[198px]">
             Update Avatar
           </h4>
           <Typography htmlFor="image" className="">
-            <label className="flex h-9 cursor-pointer items-center justify-center rounded-full border border-slate-400 bg-transparent text-xs font-semibold leading-4 text-slate-800 shadow hover:bg-indigo-700 hover:text-white focus:outline-none max-md:max-w-[350px] md:w-[350px]">
+            <label className="flex h-9 cursor-pointer items-center justify-center rounded-full border border-slate-400 bg-transparent text-xs font-semibold leading-4 text-slate-800 shadow hover:bg-indigo-700 hover:text-white focus:outline-none dark:text-slate-200 max-md:max-w-[350px] md:w-[350px]">
               <input
                 type="file"
                 id="image"
@@ -127,19 +127,12 @@ const UpdateUser = () => {
         </div>
 
         <div className="ms-auto w-fit space-x-2">
-          <Button
-            type="reset"
-            className="border-none bg-transparent text-slate-700 hover:bg-red-500 hover:text-white hover:outline-offset-2 hover:ring-2 hover:ring-red-300"
-          >
-            Cancel
-          </Button>
-          <Button
+          <GlobalButton name="Cancel" type="reset" />
+          <GlobalButton
+            name="Update Password"
             type="submit"
-            disabled={isPending}
-            className="border-none bg-indigo-700 hover:bg-indigo-600 hover:outline-offset-2 hover:ring-2"
-          >
-            Update Password
-          </Button>
+            status={isPending}
+          />
         </div>
       </form>
     </div>

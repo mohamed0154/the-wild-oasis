@@ -9,6 +9,7 @@ import { DarkContext } from "../App";
 // eslint-disable-next-line react/prop-types
 const DashList = ({ children }) => {
   const { darkMood } = useContext(DarkContext);
+
   return (
     <>
       <Drawer>

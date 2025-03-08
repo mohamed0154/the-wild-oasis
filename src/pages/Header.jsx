@@ -19,7 +19,7 @@ const Header = () => {
             className="h-[40px] w-[40px] rounded-full"
             alt=""
           />
-          <span className="font-sans text-sm font-semibold max-sm:max-h-11 max-sm:max-w-36 max-sm:overflow-hidden">
+          <span className="font-sans text-sm font-semibold max-sm:max-h-11 max-sm:max-w-28 max-sm:overflow-hidden">
             {user?.user_metadata?.fullName}
           </span>
         </div>

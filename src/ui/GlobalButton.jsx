@@ -7,7 +7,7 @@ const GlobalButton = ({ name, type, status = false }) => {
       <Button
         type={type}
         disabled={status}
-        className="border-none bg-transparent text-slate-700 hover:bg-red-500 hover:text-white hover:outline-offset-2 hover:ring-2 hover:ring-red-300"
+        className="border-none bg-slate-100 text-slate-700 hover:bg-red-500 hover:text-white hover:outline-offset-2 hover:ring-2 hover:ring-red-300 dark:bg-slate-700 dark:text-slate-200"
       >
         {name}
       </Button>
@@ -17,7 +17,7 @@ const GlobalButton = ({ name, type, status = false }) => {
     <Button
       type={type}
       disabled={status}
-      className="border-none bg-indigo-700 hover:bg-indigo-600 hover:outline-offset-2 hover:ring-2"
+      className="border-none bg-indigo-700 hover:bg-indigo-600 hover:outline-offset-2 hover:ring-2 dark:text-slate-200"
     >
       {name}
     </Button>
