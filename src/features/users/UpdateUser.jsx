@@ -1,8 +1,9 @@
+import GlobalButton from "../../ui/GlobalButton";
+
 import { Input, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import { useCheckAuth } from "../auth/useCheckAuth";
 import { useUpdateUser } from "./useUpdateUser";
-import GlobalButton from "../../ui/GlobalButton";
 
 const UpdateUser = () => {
   const [fullName, setUpdateName] = useState();
@@ -24,6 +25,7 @@ const UpdateUser = () => {
       },
     );
   }
+
   function updateUserPass(e) {
     e.preventDefault();
     updateUserApi({ password });
@@ -36,7 +38,7 @@ const UpdateUser = () => {
       </h1>
       <form
         onSubmit={(e) => updateUser(e)}
-        className="mb-10 w-full space-y-7 overflow-hidden rounded-lg bg-white px-3 py-3 pb-7 shadow-md dark:bg-slate-800"
+        className="mb-10 w-full space-y-7 overflow-hidden rounded-lg bg-white p-10 shadow-md dark:bg-slate-800"
       >
         {/* <div className="mb-4 flex items-center gap-5"></div> */}
 
@@ -78,7 +80,7 @@ const UpdateUser = () => {
           />
         </div>
         <div className="mb-4 flex max-md:flex-col max-md:gap-2 md:items-center">
-          <h4 className="text-sm font-semibold leading-snug text-gray-900 dark:text-slate-200 md:basis-[185px] xl:basis-[198px]">
+          <h4 className="text-sm font-semibold leading-snug text-gray-900 dark:text-slate-200 md:basis-[180px] xl:basis-[196px]">
             Update Avatar
           </h4>
           <Typography htmlFor="image" className="">
@@ -103,7 +105,7 @@ const UpdateUser = () => {
       </form>
       <form
         onSubmit={(e) => updateUserPass(e)}
-        className="mb-10 space-y-7 rounded-lg bg-white p-5 pb-7 shadow-md dark:bg-slate-800"
+        className="mb-5 space-y-7 rounded-lg p-10 shadow-md dark:bg-slate-800"
       >
         <div className="mb-4 flex items-center gap-5"></div>
 

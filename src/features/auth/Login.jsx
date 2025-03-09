@@ -17,12 +17,7 @@ const Login = () => {
     }
   }
 
-  if (isLoading)
-    return (
-      <div className="relative h-[100vh] dark:bg-slate-900">
-        <Loading />
-      </div>
-    );
+  if (isLoading) return <Loading />;
 
   return (
     <div className="flex min-h-screen items-center justify-center dark:bg-slate-900 dark:text-slate-200">

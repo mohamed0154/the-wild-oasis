@@ -10,12 +10,7 @@ const BookingsShow = () => {
     queryFn: showBookings,
   });
 
-  if (isPending)
-    return (
-      <div className="relative h-[100vh] dark:bg-slate-900">
-        <Loading />
-      </div>
-    );
+  if (isPending) return <Loading />;
 
   return (
     <div className="mx-auto mt-10 h-[600px] max-sm:mx-auto max-sm:w-[350px]">

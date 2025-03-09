@@ -1,8 +1,10 @@
 import { Input, Typography } from "@material-tailwind/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getSettings, updateSettingsApi } from "./settingsServices";
+
 import Loading from "../../ui/Loading";
 import toast from "react-hot-toast";
+
 const Settings = () => {
   const { data = {}, isPending } = useQuery({
     queryKey: ["settings"],
@@ -14,17 +16,18 @@ const Settings = () => {
     maxBookingLength,
     minBookingLength,
   } = data;
-
   const queryClient = useQueryClient();
 
   const { mutate, isPending: isEditting } = useMutation({
     mutationFn: updateSettingsApi,
+    //
     onSuccess() {
       toast.success("settings updated Successfuly");
       queryClient.invalidateQueries({
         queryKey: ["settings"],
       });
     },
+    //
     onError() {
       toast.error("There's a proplem");
     },
@@ -33,8 +36,9 @@ const Settings = () => {
   function updateSettings(key, value) {
     mutate({ [key]: value });
   }
-  console.log(isEditting);
+
   if (isPending) return <Loading />;
+
   return (
     <div className="text-slate-700">
       <h1 className="my-6 mt-16 text-3xl font-semibold dark:text-slate-200">
@@ -42,7 +46,7 @@ const Settings = () => {
       </h1>
       <form
         onSubmit=""
-        className="space-y-7 rounded-lg bg-white p-5 pb-8 shadow-md dark:bg-slate-800"
+        className="space-y-7 rounded-lg bg-white p-10 shadow-md dark:bg-slate-800"
       >
         <div className="mb-4 mt-2 flex items-center gap-5">
           <Typography

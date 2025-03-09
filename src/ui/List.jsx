@@ -15,7 +15,7 @@ const DashList = ({ children }) => {
       <Drawer>
         {children}
         <Drawer.Overlay className="lg:hidden">
-          <div className={`${darkMood && "dark"} `}>
+          <div className={`${+darkMood && "dark"} `}>
             <Drawer.Panel
               placement="left"
               className="overflow-auto p-0 transition-all duration-300 dark:bg-slate-800"

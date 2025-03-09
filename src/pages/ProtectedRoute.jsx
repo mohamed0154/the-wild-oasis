@@ -19,12 +19,7 @@ const ProtectedRoute = ({ children }) => {
     [isAuthenticated, isPending, navigate],
   );
 
-  if (isPending)
-    return (
-      <div className="relative h-[100vh] dark:bg-slate-900">
-        <Loading />;
-      </div>
-    );
+  if (isPending) return <Loading />;
 
   return (
     <div className="dark:bg-slate-900 dark:text-slate-200">{children}</div>

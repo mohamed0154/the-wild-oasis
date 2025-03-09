@@ -12,7 +12,7 @@ const Home = () => {
       <h1 className="my-6 mt-16 text-3xl font-semibold">Dashboard</h1>
 
       <div>
-        <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-4 md:gap-4">
+        <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           <Statistics
             iconName={<HiOutlineBanknotes />}
             statisticName="Sales"
@@ -42,7 +42,7 @@ const Home = () => {
             bg="#fef9c3"
           />
         </div>
-        <div className="mb-3 mt-3 flex items-start gap-3 max-lg:flex-col">
+        <div className="my-5 flex items-start gap-3 max-lg:flex-col max-lg:gap-5">
           <Activities />
           <PieChart />
         </div>

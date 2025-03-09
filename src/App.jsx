@@ -25,20 +25,22 @@ export const DarkContext = createContext(false);
 
 function App() {
   const queryClient = new QueryClient();
-  const [darkMood, setDarkMood] = useState(true);
+  const [darkMood, setDarkMood] = useState(function () {
+    return localStorage.getItem("darkModeStatus");
+  });
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools />
-      <BrowserRouter>
-        <Suspense fallback={<Loading />}>
-          <DarkContext.Provider
-            value={{
-              darkMood,
-              setDarkMood,
-            }}
-          >
-            <div className={`${darkMood && "dark"}`}>
+    <div className={`${+darkMood && "dark"}`}>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools />
+        <BrowserRouter>
+          <Suspense fallback={<Loading />}>
+            <DarkContext.Provider
+              value={{
+                darkMood,
+                setDarkMood,
+              }}
+            >
               <Routes>
                 <Route
                   path="/"
@@ -61,39 +63,39 @@ function App() {
 
                 <Route path="/login" element={<Login />} />
               </Routes>
-            </div>
-          </DarkContext.Provider>
-        </Suspense>
-      </BrowserRouter>
-      <Toaster
-        position="top-center"
-        gutter={12}
-        containerStyle={{
-          padding: 5, // Adjusts the top margin
-        }}
-        toastOptions={{
-          // Default toast styles
-          style: {
-            background: "#333",
-            color: "#000000",
-          },
-          // Success toast
-          success: {
-            duration: 3000,
+            </DarkContext.Provider>
+          </Suspense>
+        </BrowserRouter>
+        <Toaster
+          position="top-center"
+          gutter={12}
+          containerStyle={{
+            padding: 5, // Adjusts the top margin
+          }}
+          toastOptions={{
+            // Default toast styles
             style: {
-              background: "white",
+              background: "#333",
+              color: "#000000",
             },
-          },
-          // Error toast
-          error: {
-            duration: 5000,
-            style: {
-              background: "white",
+            // Success toast
+            success: {
+              duration: 3000,
+              style: {
+                background: "white",
+              },
             },
-          },
-        }}
-      />
-    </QueryClientProvider>
+            // Error toast
+            error: {
+              duration: 5000,
+              style: {
+                background: "white",
+              },
+            },
+          }}
+        />
+      </QueryClientProvider>
+    </div>
   );
 }
 

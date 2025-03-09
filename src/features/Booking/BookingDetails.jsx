@@ -34,7 +34,7 @@ const BookingDetails = () => {
           <span>Back</span>
         </div>
       </div>
-      <div className="flex flex-col gap-7 bg-white pb-5">
+      <div className="flex flex-col gap-7 bg-white pb-5 dark:bg-slate-800">
         <div className="flex items-center gap-3 rounded-se-lg rounded-ss-lg bg-indigo-500 p-5 text-xl font-semibold text-slate-50/80 max-md:flex-col max-md:text-center md:gap-32 md:text-2xl">
           <div className="flex items-center gap-5">
             <FaHome className="text-5xl" />
@@ -53,13 +53,13 @@ const BookingDetails = () => {
               {booking?.guests?.full_name} + {booking?.num_guests} Guests
             </span>
             <span className="h-1 w-1 rounded-full bg-slate-900/50"></span>
-            <span className="tracking-wider text-slate-600">
+            <span className="tracking-wider text-slate-600 dark:text-slate-200">
               {booking?.guests?.email}
             </span>
 
             <span className="h-1 w-1 rounded-full bg-slate-900/50"></span>
 
-            <span className="italic tracking-wider text-slate-600">
+            <span className="italic tracking-wider text-slate-600 dark:text-slate-200">
               Nationl Id{booking?.guests?.national_id}
             </span>
           </div>

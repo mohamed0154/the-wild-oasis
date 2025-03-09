@@ -24,7 +24,7 @@ const CabinItem = ({ cabin = {} }) => {
   return (
     <>
       <tbody className="group text-center text-sm text-slate-700 dark:text-white">
-        <tr className="last:border-1 border-b border-surface">
+        <tr className="last:border-1 border-b border-surface dark:border-surface-light">
           <td className="py-1 font-semibold">{name}</td>
           <td className="py-1">{max_capacity}</td>
           <td className="py-1">${regular_price} </td>

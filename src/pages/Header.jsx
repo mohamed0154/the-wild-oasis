@@ -10,6 +10,11 @@ const Header = () => {
   const { user = {} } = useCheckAuth();
   const { darkMood, setDarkMood } = useContext(DarkContext);
 
+  function giveDarkMode(status) {
+    localStorage.setItem("darkModeStatus", status);
+    +darkMood ? setDarkMood(0) : setDarkMood(1);
+  }
+
   return (
     <div className="border-s border-slate-400/20 bg-white p-3 dark:bg-slate-800">
       <div className="ms-auto flex w-fit items-center gap-2">
@@ -29,10 +34,10 @@ const Header = () => {
           </Link>
 
           <span
-            onClick={() => setDarkMood((dark) => !dark)}
+            onClick={() => giveDarkMode(+darkMood ? 0 : 1)}
             className="cursor-pointer rounded-full p-2 hover:bg-slate-50 dark:hover:bg-slate-50"
           >
-            {darkMood ? (
+            {+darkMood ? (
               <MdLightMode className="text-2xl text-blue-500" />
             ) : (
               <FaMoon color="#6054fd" size={25} className="m-0 text-blue-500" />

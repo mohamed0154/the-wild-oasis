@@ -31,12 +31,7 @@ const Cabins = () => {
     filterData = data;
   }
 
-  if (isPending)
-    return (
-      <div className="relative h-[100vh] dark:bg-slate-900">
-        <Loading />
-      </div>
-    );
+  if (isPending) return <Loading />;
 
   return (
     <>
