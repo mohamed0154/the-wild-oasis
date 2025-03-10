@@ -28,7 +28,7 @@ const Form = ({ cabin = {}, setOpen }) => {
       updateCabin(cabinRow);
       setOpen(false);
     } else {
-      // const cabinRow = { ...data, image: data.image[0].name };
+      setOpen(false);
       insertCabin(cabinRow);
     }
   }
@@ -36,7 +36,7 @@ const Form = ({ cabin = {}, setOpen }) => {
   return (
     <form
       onSubmit={handleSubmit(submitData)}
-      className="mt-6 overflow-auto pe-2 scrollbar-thin scrollbar-track-gray-200/20 scrollbar-thumb-blue-500 max-sm:h-[70vh]"
+      className="mt-6 overflow-auto pe-2 scrollbar-thin scrollbar-track-gray-200/20 scrollbar-thumb-blue-500 dark:bg-slate-800 max-sm:h-[70vh]"
     >
       <div className="mb-4 mt-2 space-y-1.5">
         <Typography

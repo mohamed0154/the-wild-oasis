@@ -46,7 +46,7 @@ const Settings = () => {
       </h1>
       <form
         onSubmit=""
-        className="space-y-7 rounded-lg bg-white p-10 shadow-md dark:bg-slate-800"
+        className="space-y-7 rounded-lg bg-white p-10 shadow-md dark:bg-slate-800 max-sm:px-3"
       >
         <div className="mb-4 mt-2 flex items-center gap-5">
           <Typography

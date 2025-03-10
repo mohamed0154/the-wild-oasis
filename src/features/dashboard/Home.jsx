@@ -46,7 +46,7 @@ const Home = () => {
           <Activities />
           <PieChart />
         </div>
-        <div className="h-[300px] bg-white p-3 dark:bg-slate-800">
+        <div className="mb-5 h-[300px] bg-white p-3 dark:bg-slate-800">
           <CreateCharts />
         </div>
       </div>

@@ -12,9 +12,7 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(
     function () {
-      if (!isAuthenticated && !isPending) {
-        navigate("/login");
-      }
+      if (!isAuthenticated && !isPending) navigate("/login");
     },
     [isAuthenticated, isPending, navigate],
   );
@@ -22,7 +20,9 @@ const ProtectedRoute = ({ children }) => {
   if (isPending) return <Loading />;
 
   return (
-    <div className="dark:bg-slate-900 dark:text-slate-200">{children}</div>
+    <div className="min-h-screen dark:bg-slate-900 dark:text-slate-200">
+      {isAuthenticated && children}
+    </div>
   );
 };
 

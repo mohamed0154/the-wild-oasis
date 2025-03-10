@@ -33,6 +33,7 @@ function App() {
     <div className={`${+darkMood && "dark"}`}>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools />
+
         <BrowserRouter>
           <Suspense fallback={<Loading />}>
             <DarkContext.Provider
@@ -66,6 +67,7 @@ function App() {
             </DarkContext.Provider>
           </Suspense>
         </BrowserRouter>
+
         <Toaster
           position="top-center"
           gutter={12}

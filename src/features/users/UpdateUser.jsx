@@ -38,7 +38,7 @@ const UpdateUser = () => {
       </h1>
       <form
         onSubmit={(e) => updateUser(e)}
-        className="mb-10 w-full space-y-7 overflow-hidden rounded-lg bg-white p-10 shadow-md dark:bg-slate-800"
+        className="mb-10 w-full space-y-7 overflow-hidden rounded-lg bg-white p-10 shadow-md dark:bg-slate-800 max-sm:px-3"
       >
         {/* <div className="mb-4 flex items-center gap-5"></div> */}
 
@@ -105,7 +105,7 @@ const UpdateUser = () => {
       </form>
       <form
         onSubmit={(e) => updateUserPass(e)}
-        className="mb-5 space-y-7 rounded-lg p-10 shadow-md dark:bg-slate-800"
+        className="mb-5 space-y-7 rounded-lg p-10 shadow-md dark:bg-slate-800 max-sm:px-3"
       >
         <div className="mb-4 flex items-center gap-5"></div>
 

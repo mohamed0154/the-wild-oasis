@@ -15,5 +15,5 @@ export function useRedirect() {
     [isAuthenticated, isPending, navigate],
   );
 
-  return { isPending };
+  return { isPending, isAuthenticated };
 }

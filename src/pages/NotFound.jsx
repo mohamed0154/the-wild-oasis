@@ -3,7 +3,7 @@ import { FaExclamationTriangle } from "react-icons/fa";
 
 const NotFound = () => {
   return (
-    <Alert className="m-5 w-64 border-none bg-white text-slate-700">
+    <Alert className="m-5 w-64 border-none bg-white text-slate-700 dark:bg-slate-800 dark:text-slate-200">
       <Alert.Icon>
         <FaExclamationTriangle />
       </Alert.Icon>
