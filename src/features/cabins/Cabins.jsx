@@ -17,7 +17,6 @@ const Cabins = () => {
     queryKey: ["cabins"],
     queryFn: getCabins,
   });
-
   /////////////Filter
   if (label === "NoDiscound") {
     filterData = data.filter((cabin) => cabin.discount === 0);

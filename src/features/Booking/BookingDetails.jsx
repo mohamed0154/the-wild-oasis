@@ -7,6 +7,7 @@ import { showBooking } from "./bookingServices";
 import { formatCurrency } from "../../utilities/helpers";
 
 const BookingDetails = () => {
+
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -15,6 +16,7 @@ const BookingDetails = () => {
     queryFn: () => showBooking(id),
   });
 
+  // console.log(booking.data.name);
   if (isPending)
     return (
       <div className="relative h-[100vh] dark:bg-slate-900">
@@ -39,34 +41,34 @@ const BookingDetails = () => {
           <div className="flex items-center gap-5">
             <FaHome className="text-5xl" />
             <span className="italic">
-              {booking?.num_nights} Nights in Cabin {booking?.cabins?.name}
+              {booking?.num_nights} Nights in Cabin {booking?.cabin?.name}
             </span>
           </div>
           <span className="">
-            {formatCurrency(booking?.start_at)} —{" "}
-            {formatCurrency(booking?.end_at)}
+            {formatCurrency(booking?.created_at)} —{" "}
+            {formatCurrency(booking?.updated_at)}
           </span>
         </div>
         <div className="md:mx-10">
           <div className="flex items-center gap-7 max-md:flex-col max-md:gap-1">
             <span className="text-lg font-medium">
-              {booking?.guests?.full_name} + {booking?.num_guests} Guests
+              {booking?.guest?.name} + {booking?.num_guests} Guests
             </span>
             <span className="h-1 w-1 rounded-full bg-slate-900/50"></span>
             <span className="tracking-wider text-slate-600 dark:text-slate-200">
-              {booking?.guests?.email}
+              {booking?.guest?.email}
             </span>
 
             <span className="h-1 w-1 rounded-full bg-slate-900/50"></span>
 
             <span className="italic tracking-wider text-slate-600 dark:text-slate-200">
-              Nationl Id{booking?.guests?.national_id}
+              Nationl Id{booking?.guest?.national_id}
             </span>
           </div>
 
           <div className="mt-5 max-md:text-center">
             <span className="me-4 font-semibold">Observations</span>
-            <span>Hi my name is {booking?.guests?.full_name}</span>
+            <span>Hi my name is {booking?.guest?.name}</span>
           </div>
           <div className="mt-5 flex items-center gap-3 max-md:justify-center">
             <FaCheck className="rounded-full border-2 border-blue-500/50 text-lg text-blue-500/70" />{" "}

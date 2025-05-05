@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { insertCabin } from "./cabinServices";
+import { duplicateCabin as duplicateCabinApi } from "./cabinServices";
 import toast from "react-hot-toast";
 
 export function useDuplicateCabin() {
   const queryClient = useQueryClient();
 
   const { mutate: duplicateCabin } = useMutation({
-    mutationFn: insertCabin,
+    mutationFn: duplicateCabinApi,
     onSuccess() {
       toast.success("The Cabin duplicated Successfuly");
       queryClient.invalidateQueries({

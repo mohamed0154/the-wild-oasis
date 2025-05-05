@@ -5,20 +5,21 @@ import { FiCopy, FiMoreVertical } from "react-icons/fi";
 import { useDuplicateCabin } from "./useDuplicateCabin";
 
 const CabinMutation = ({ deleteItem, cabin, formModal }) => {
-  const { name, regular_price, max_capacity, discount, description, image } =
-    cabin;
+  // const { name, regular_price, max_capacity, discount, description, image } =
+    // cabin;
   const { duplicateCabin: duplicateCabinApi } = useDuplicateCabin();
 
   function duplicateCabin() {
-    const cabinCopy = {
-      name,
-      regular_price,
-      max_capacity,
-      discount,
-      description,
-      image,
-    };
-    duplicateCabinApi(cabinCopy);
+    // const cabinCopy = {
+    //   // name,
+    //   // regular_price,
+    //   // max_capacity,
+    //   // discount,
+    //   // description,
+    //   // image,
+    //   id:cabin.id
+    // };
+    duplicateCabinApi(cabin.id);
   }
 
   return (

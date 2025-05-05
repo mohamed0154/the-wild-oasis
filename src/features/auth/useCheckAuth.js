@@ -7,5 +7,9 @@ export function useCheckAuth() {
     queryFn: checkAuth,
   });
 
-  return { user, isAuthenticated: user?.role === "authenticated", isPending };
+  return {
+    user,
+    isAuthenticated: user?.message === "Authenticated",
+    isPending,
+  };
 }

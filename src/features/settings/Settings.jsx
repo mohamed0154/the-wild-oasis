@@ -11,10 +11,10 @@ const Settings = () => {
     queryFn: getSettings,
   });
   const {
-    breakfastPrice,
-    maxGuestsPerbooking,
-    maxBookingLength,
-    minBookingLength,
+    breakfast_price,
+    max_guests_per_booking,
+    max_booking_length,
+    min_booking_length,
   } = data;
   const queryClient = useQueryClient();
 
@@ -34,7 +34,9 @@ const Settings = () => {
   });
 
   function updateSettings(key, value) {
-    mutate({ [key]: value });
+    const formData = new FormData();
+    formData.append(key,value);
+    mutate(formData);
   }
 
   if (isPending) return <Loading />;
@@ -51,7 +53,7 @@ const Settings = () => {
         <div className="mb-4 mt-2 flex items-center gap-5">
           <Typography
             as="label"
-            htmlFor="minBookingLength"
+            htmlFor="min_booking_length"
             type="text"
             color="default"
             className="basis-56 font-semibold"
@@ -60,9 +62,9 @@ const Settings = () => {
           </Typography>
           <Input
             type="number"
-            defaultValue={minBookingLength}
-            id="minBookingLength"
-            onBlur={(e) => updateSettings("minBookingLength", e.target.value)}
+            defaultValue={min_booking_length}
+            id="min_booking_length"
+            onBlur={(e) => updateSettings("min_booking_length", e.target.value)}
             disabled={isEditting}
             className="max-w-[350px] dark:border-slate-50/20"
           />
@@ -71,7 +73,7 @@ const Settings = () => {
         <div className="mb-4 flex items-center gap-5">
           <Typography
             as="label"
-            htmlFor="maxBookingLength"
+            htmlFor="max_booking_length"
             type="small"
             color="default"
             className="basis-56 font-semibold"
@@ -79,17 +81,17 @@ const Settings = () => {
             max Booking
           </Typography>
           <Input
-            id="maxBookingLength"
+            id="max_booking_length"
             type="number"
-            defaultValue={maxBookingLength}
-            onBlur={(e) => updateSettings("maxBookingLength", e.target.value)}
+            defaultValue={max_booking_length}
+            onBlur={(e) => updateSettings("max_booking_length", e.target.value)}
             className="max-w-[350px] dark:border-slate-50/20"
           />
         </div>
         <div className="mb-4 flex items-center gap-5">
           <Typography
             as="label"
-            htmlFor="maxGuestsPerbooking"
+            htmlFor="max_guests_per_booking"
             type="small"
             color="default"
             className="basis-56 font-semibold"
@@ -97,11 +99,11 @@ const Settings = () => {
             maxGuestsPerbooking
           </Typography>
           <Input
-            id="maxGuestsPerbooking"
+            id="max_guests_per_booking"
             type="number"
-            defaultValue={maxGuestsPerbooking}
+            defaultValue={max_guests_per_booking}
             onBlur={(e) =>
-              updateSettings("maxGuestsPerbooking", e.target.value)
+              updateSettings("max_guests_per_booking", e.target.value)
             }
             className="max-w-[350px] dark:border-slate-50/20"
           />
@@ -109,7 +111,7 @@ const Settings = () => {
         <div className="mb-4 flex items-center gap-5">
           <Typography
             as="label"
-            htmlFor="breakfastPrice"
+            htmlFor="breakfast_price"
             type="small"
             color="default"
             className="basis-56 font-semibold"
@@ -117,10 +119,10 @@ const Settings = () => {
             Breakfast Price
           </Typography>
           <Input
-            id="breakfastPrice"
+            id="breakfast_price"
             type="number"
-            defaultValue={breakfastPrice}
-            onBlur={(e) => updateSettings("breakfastPrice", e.target.value)}
+            defaultValue={breakfast_price}
+            onBlur={(e) => updateSettings("breakfast_price", e.target.value)}
             className="max-w-[350px] dark:border-slate-50/20"
           />
         </div>

@@ -4,31 +4,33 @@ import { Input, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import { useCheckAuth } from "../auth/useCheckAuth";
 import { useUpdateUser } from "./useUpdateUser";
+import { useForm } from "react-hook-form";
+import { updatePassword } from "./updateUserServices";
+import toast from "react-hot-toast";
 
 const UpdateUser = () => {
-  const [fullName, setUpdateName] = useState();
-  const [avatar, setUpdateAvatar] = useState();
+  
+  const {register,handleSubmit,}=useForm();
   const [password, setNewPass] = useState();
   const { user } = useCheckAuth();
   const { updateUser: updateUserApi, isPending } = useUpdateUser();
+  const formData = new FormData();
 
-  function updateUser(e) {
-    e.preventDefault();
-    updateUserApi(
-      { fullName, avatar },
-      {
-        onSuccess: () => {
-          setUpdateAvatar(null);
-          setUpdateName("");
-          e.target.reset();
-        },
-      },
-    );
+  function updateUser(data) {
+    
+    formData.append('avatar',data.avatar[0]);
+    updateUserApi(formData);
   }
 
-  function updateUserPass(e) {
+  async function updateUserPass(e) {
     e.preventDefault();
-    updateUserApi({ password });
+     formData.append('password',password);
+     try{
+       const result = await updatePassword(formData);
+       toast.success('Password is Changed Successfully');
+     }catch(er){
+      toast.error(er.message);
+    }
   }
 
   return (
@@ -37,7 +39,8 @@ const UpdateUser = () => {
         Update User
       </h1>
       <form
-        onSubmit={(e) => updateUser(e)}
+      onSubmit={handleSubmit(updateUser)}
+        // onSubmit={(e) => updateUser(e)}
         className="mb-10 w-full space-y-7 overflow-hidden rounded-lg bg-white p-10 shadow-md dark:bg-slate-800 max-sm:px-3"
       >
         {/* <div className="mb-4 flex items-center gap-5"></div> */}
@@ -54,9 +57,10 @@ const UpdateUser = () => {
           </Typography>
           <Input
             type="email"
-            value={user?.email}
+            value={user?.data?.email}
             id="email"
             disabled=""
+         
             className="max-w-[350px] dark:border-slate-100/20"
           />
         </div>
@@ -64,7 +68,7 @@ const UpdateUser = () => {
         <div className="mb-4 flex gap-5 max-md:flex-col max-md:gap-2 md:items-center">
           <Typography
             as="label"
-            htmlFor="fullName"
+            htmlFor="name"
             type="small"
             color="default"
             className="font-semibold md:basis-56"
@@ -72,10 +76,10 @@ const UpdateUser = () => {
             Full Name
           </Typography>
           <Input
-            id="fullName"
+            id="name"
             type="text"
-            defaultValue=""
-            onChange={(e) => setUpdateName(e.target.value)}
+            value={user?.data?.name}
+         
             className="max-w-[350px] dark:border-slate-100/20"
           />
         </div>
@@ -90,7 +94,9 @@ const UpdateUser = () => {
                 id="image"
                 className=""
                 hidden
-                onChange={(e) => setUpdateAvatar(e.target.files[0])}
+                {...register("avatar",{
+                  'required':'The avatar is required',
+                })}
               />
               Choose
             </label>

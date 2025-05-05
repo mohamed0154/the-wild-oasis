@@ -1,33 +1,63 @@
 import supabase from "../../services/supabase";
 
 export async function login({ email, password }) {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-  if (error) throw new Error(error.message);
-  return data;
+  try {
+    const response = await fetch("http://127.0.0.1:8000/api/admin/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+      credentials: "include",
+    });
+
+    const data = await response.json();
+    if (data.errors) {
+      throw new Error(`error! : ${data.message}`);
+      // return data.errors;
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error posting data:", error);
+    throw error; // Re-throw if you want to handle it in the calling function
+  }
 }
 
 export async function checkAuth() {
-  const { data: session } = await supabase.auth.getSession();
-  if (!session.session) return null;
+  const response = await fetch("http://127.0.0.1:8000/api/check-auth", {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: localStorage.getItem("auth-token"),
+    },
+    credentials: "include",
+  });
 
-  const { data } = await supabase.auth.getUser();
-  return data?.user;
+  const data = await response.json();
+
+  if (data?.message) return data;
+  if (!response.ok) {
+    throw new Error(`Http error! status: ${response.status}`);
+  }
+  return data;
 }
 
-export async function signup({ email, password, fullName }) {
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        fullName,
-      },
+export async function signup(userDataStore) {
+  const response = await fetch("http://127.0.0.1:8000/api/admin/addAdmin", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      Authorization: localStorage.getItem("auth-token"),
     },
+    body: userDataStore,
+    // credentials: "include",
   });
-  if (error) throw new Error(error);
+  const data = await response.json();
+  if (data.errors) {
+    throw new Error(`error! : ${data.message}`);
+  }
 
   return data;
 }

@@ -5,10 +5,15 @@ import { useForm } from "react-hook-form";
 import { useLogin } from "./useLogin";
 import { useRedirect } from "./useRedirect";
 
+
 const Login = () => {
+  const token = localStorage.getItem("auth-token");
   const { register, handleSubmit, formState: errors } = useForm();
   const { isPending: isLoading, isAuthenticated } = useRedirect();
   const { login, isPending } = useLogin();
+
+
+
 
   function submitData(data) {
     const { email, password } = data;
@@ -16,7 +21,8 @@ const Login = () => {
       login({ email, password });
     }
   }
-
+  
+ 
   if (isLoading) return <Loading />;
 
   return (
@@ -29,7 +35,7 @@ const Login = () => {
           />
 
           <h1 className="text-center text-3xl font-bold">
-            Login to your account
+            Login to Admin Account
           </h1>
           <form
             onSubmit={handleSubmit(submitData)}
@@ -47,7 +53,7 @@ const Login = () => {
                 {...register("email", {
                   required: "Fill the Field",
                 })}
-                defaultValue="mf@gmail.com"
+                defaultValue="admin45@gmail.com"
                 disabled={isPending}
                 placeholder="someone@example.com"
                 type="email"
@@ -67,7 +73,7 @@ const Login = () => {
                 Password
               </label>
               <input
-                defaultValue="mohamed"
+                defaultValue="12345678"
                 id="password"
                 {...register("password", {
                   required: "Fill the Field",
@@ -75,6 +81,7 @@ const Login = () => {
                 disabled={isPending}
                 placeholder="Password"
                 type="password"
+
                 className="peer w-full rounded-md border border-slate-200 bg-transparent px-2.5 py-2 text-sm text-slate-800 shadow-sm outline-none ring ring-transparent transition-all duration-300 ease-in placeholder:text-slate-600/60 data-[error=true]:border-red-500 data-[success=true]:border-green-500 data-[icon-placement=end]:pe-9 data-[icon-placement=start]:ps-9 hover:border-green-400 hover:ring-slate-800/10 focus:outline-none focus:ring-slate-800/10 dark:text-white"
                 data-error="false"
                 data-success="false"

@@ -4,10 +4,18 @@ import { useSignup } from "../auth/useSignup";
 import GlobalButton from "../../ui/GlobalButton";
 
 const CreateUser = () => {
-  const { register, handleSubmit, getValues, formState: errors } = useForm();
+  const { register, handleSubmit, getValues, formState } = useForm();
   const { signup, isPending } = useSignup();
+  
+  console.log(formState);
   function submitData(data) {
-    signup(data);
+    const userDataStore = new FormData();
+    userDataStore.append('name',data.name);
+    userDataStore.append('email',data.email);
+    userDataStore.append('password',data.password);
+    userDataStore.append('password_confirmation',data.password_confirmation);
+    console.log(userDataStore);
+    signup(userDataStore);
   }
 
   return (
@@ -32,16 +40,16 @@ const CreateUser = () => {
           <div className="w-full">
             <Input
               type="text"
-              id="fullName"
-              {...register("fullName", {
+              id="name"
+              {...register("name", {
                 required: "Fill The Field",
               })}
               defaultValue=""
               className="max-w-[350px] dark:border-slate-50/20"
             />
-            {errors?.fullName && (
+            {formState?.fullName && (
               <span className="bg-red-500 p-2 text-white">
-                {errors?.fullName?.message}
+                {formState?.fullName?.message}
               </span>
             )}
           </div>
@@ -93,14 +101,14 @@ const CreateUser = () => {
                 message: "must be less than 8 Characters",
               },
             })}
-            defaultValue=""
             className="max-w-[350px] dark:border-slate-50/20"
           />
+          {formState?.password?.message}
         </div>
         <div className="mb-4 flex items-center gap-5">
           <Typography
             as="label"
-            htmlFor="confirmPassword"
+            htmlFor="password_confirmation"
             type="password"
             color="default"
             className="basis-56 font-semibold"
@@ -108,9 +116,9 @@ const CreateUser = () => {
             Confirm Password
           </Typography>
           <Input
-            id="confirmPassword"
+            id="password_confirmation"
             type="password"
-            {...register("confirmPassword", {
+            {...register("password_confirmation", {
               required: "Fill The Field",
               validate: (value) => value === getValues().password,
             })}

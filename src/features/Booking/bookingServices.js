@@ -1,31 +1,56 @@
 import supabase from "../../services/supabase";
 
 export async function showBookings() {
-  let { data: bookings, error } = await supabase
-    .from("bookings")
-    .select("*, cabins(name),guests(full_name)");
-  if (error) throw new Error(error.message);
+  const response = await fetch("http://127.0.0.1:8000/api/admin/bookings", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: localStorage.getItem("auth-token"),
+    },
+    // body: formData,
+    // credentials: "include",
+  });
+  const data = await response.json();
+  if (data.errors) {
+    throw new Error(`error! : ${data.message}`);
+  }
 
-  return bookings;
+  return data.data;
 }
+
 export async function showBooking(id) {
-  let { data: booking, error } = await supabase
-    .from("bookings")
-    .select("*, cabins(name),guests(full_name,email,national_id)")
-    .eq("id", id)
-    .single();
-  if (error) throw new Error(error.message);
+  const response = await fetch(`http://127.0.0.1:8000/api/booking/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: localStorage.getItem("auth-token"),
+    },
+    // body: formData,
+    // credentials: "include",
+  });
+  const data = await response.json();
+  if (data.errors) {
+    throw new Error(`error! : ${data.message}`);
+  }
 
-  return booking;
+  return data.data;
 }
+
 export async function deleteBooking(id) {
-  console.log(id);
-  const { data: booking, error } = await supabase
-    .from("bookings")
-    .delete()
-    .eq("id", id);
+  const response = await fetch(
+    `http://127.0.0.1:8000/api/admin/bookings/delete/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        Authorization: localStorage.getItem("auth-token"),
+      },
+    },
+  );
+  const data = await response.json();
+  if (data.errors) {
+    throw new Error(`error! : ${data.message}`);
+  }
 
-  if (error) throw new Error(error.message);
-
-  return booking;
+  return data;
 }

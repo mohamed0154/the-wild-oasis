@@ -1,23 +1,39 @@
 import supabase from "../../services/supabase";
 
 export async function getSettings() {
-  let { data: cabins, error } = await supabase
-    .from("settings")
-    .select("*")
-    .eq("id", 1)
-    .single();
+  const response = await fetch("http://127.0.0.1:8000/api/admin/settings", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: localStorage.getItem("auth-token"),
+    },
+  });
+  const data = await response.json();
+  if (data.errors) {
+    throw new Error(`error! : ${data.message}`);
+  }
 
-  if (error) throw new Error(error);
-
-  return cabins;
+  return data.data;
 }
 export async function updateSettingsApi(row) {
-  const { data, error } = await supabase
-    .from("settings")
-    .update(row)
-    .eq("id", 1)
-    .select();
+  const response = await fetch(
+    "http://127.0.0.1:8000/api/admin/settings/update",
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: localStorage.getItem("auth-token"),
+      },
+      body: row,
+      credentials: "include",
+    },
+  );
 
-  if (error) throw new Error(error);
+  const data = await response.json();
+  console.log(data);
+  if (data.errors) {
+    throw new Error(`error! : ${data.message}`);
+  }
+
   return data;
 }

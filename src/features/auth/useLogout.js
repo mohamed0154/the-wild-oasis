@@ -11,6 +11,7 @@ export function useLogout() {
     mutationFn: logout,
     onSuccess() {
       queryClient.removeQueries();
+      localStorage.removeItem("auth-token");
       navigate("/login");
     },
     onError(er) {

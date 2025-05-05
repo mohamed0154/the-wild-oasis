@@ -1,30 +1,41 @@
-import supabase, { supabaseUrl } from "../../services/supabase";
-
-export async function UpdateUser({ fullName, avatar, password }) {
-  console.log(password);
-  let updateData;
-
-  if (password) updateData = { password };
-  if (fullName) updateData = { data: { fullName } };
-
-  const { data, error } = await supabase.auth.updateUser(updateData);
-
-  if (error) throw new Error(error.message);
-  if (!avatar) return data;
-
-  const fileName = `avatar-${data.user.id}-${Math.random()}`;
-  const { error: errorStorage } = await supabase.storage
-    .from("avatars")
-    .upload(fileName, avatar);
-
-  if (errorStorage) throw new Error(errorStorage.message);
-
-  const { data: updatedUser, error: userError } =
-    await supabase.auth.updateUser({
-      data: {
-        avatar: `${supabaseUrl}/storage/v1/object/public/avatars//${fileName}`,
+export async function UpdateUser(formData) {
+  const response = await fetch(
+    "http://127.0.0.1:8000/api/admin/updateProfileImage",
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: localStorage.getItem("auth-token"),
       },
-    });
-  if (userError) throw new Error(userError.message);
-  return updatedUser;
+      body: formData,
+      // credentials: "include",
+    },
+  );
+  const data = await response.json();
+  if (data.errors) {
+    throw new Error(`error! : ${data.message}`);
+  }
+
+  return data;
+}
+export async function updatePassword(password) {
+  console.log(password);
+  const response = await fetch(
+    "http://127.0.0.1:8000/api/admin/updatePassword",
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: localStorage.getItem("auth-token"),
+      },
+      body: password,
+      // credentials: "include",
+    },
+  );
+  const data = await response.json();
+  if (data.errors) {
+    throw new Error(`error! : ${data.message}`);
+  }
+
+  return data;
 }

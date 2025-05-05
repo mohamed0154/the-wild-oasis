@@ -13,8 +13,8 @@ export function useInsertCabin() {
         queryKey: ["cabins"],
       });
     },
-    onError() {
-      toast.error("There is a Proplem");
+    onError(er) {
+      toast.error(er.message);
     },
   });
 

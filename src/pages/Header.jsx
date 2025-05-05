@@ -10,6 +10,7 @@ const Header = () => {
   const { user = {} } = useCheckAuth();
   const { darkMood, setDarkMood } = useContext(DarkContext);
 
+
   function giveDarkMode(status) {
     localStorage.setItem("darkModeStatus", status);
     +darkMood ? setDarkMood(0) : setDarkMood(1);
@@ -20,12 +21,12 @@ const Header = () => {
       <div className="ms-auto flex w-fit items-center gap-2">
         <div className="flex items-center gap-3">
           <img
-            src={user?.user_metadata?.avatar}
+            src={user?.data?.avatar}
             className="h-[40px] w-[40px] rounded-full"
             alt=""
           />
           <span className="font-sans text-sm font-semibold max-sm:max-h-11 max-sm:max-w-28 max-sm:overflow-hidden">
-            {user?.user_metadata?.fullName}
+            {user?.data?.name}
           </span>
         </div>
         <div className="flex">

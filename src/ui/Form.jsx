@@ -4,9 +4,11 @@ import { Button, Input, Typography, Textarea } from "@material-tailwind/react";
 import { useForm } from "react-hook-form";
 import { useInsertCabin } from "../features/cabins/useInsertcabin";
 import { useUpdateCabin } from "../features/cabins/useUpdateCabin";
+import { useState } from "react";
 
 const Form = ({ cabin = {}, setOpen }) => {
   const { insertCabin } = useInsertCabin();
+
   const { updateCabin } = useUpdateCabin();
   const {
     register,
@@ -18,17 +20,23 @@ const Form = ({ cabin = {}, setOpen }) => {
   });
 
   function submitData(data) {
-    let cabinRow;
+    let cabinRow = new FormData();
+    
     if (typeof data.image === "object") {
-      cabinRow = { ...data, image: data.image[0].name };
-    } else {
-      cabinRow = { ...data };
-    }
+      cabinRow.append('image',data.image[0]);
+    } 
+      cabinRow.append('name',data.name);
+      cabinRow.append('max_capacity',data.max_capacity);
+      cabinRow.append('regular_price',data.regular_price);
+      cabinRow.append('discount',data.discount);
+      cabinRow.append('description',data.description);
+    
     if (cabin?.name) {
+
+      cabinRow.append('id',data.id);
       updateCabin(cabinRow);
-      setOpen(false);
+      
     } else {
-      setOpen(false);
       insertCabin(cabinRow);
     }
   }
@@ -55,6 +63,7 @@ const Form = ({ cabin = {}, setOpen }) => {
             required: "Fill the field",
           })}
           className="darkInput"
+          defaultValue='cabin12'
         />
         <span className="mt-1 block bg-red-200 ps-1 italic tracking-wider text-red-700 shadow-md">
           {errors?.name?.message}
@@ -78,6 +87,8 @@ const Form = ({ cabin = {}, setOpen }) => {
           })}
           type="number"
           className="darkInput"
+          defaultValue='3'
+
         />
         <span className="mt-1 block bg-red-200 ps-1 italic tracking-wider text-red-700 shadow-md">
           {errors?.max_capacity?.message}
@@ -100,6 +111,8 @@ const Form = ({ cabin = {}, setOpen }) => {
           })}
           type="number"
           className="darkInput"
+          defaultValue='150'
+
         />
         <span className="mt-1 block bg-red-200 ps-1 italic tracking-wider text-red-700 shadow-md">
           {errors?.regular_price?.message}
@@ -122,6 +135,8 @@ const Form = ({ cabin = {}, setOpen }) => {
           })}
           type="number"
           className="darkInput"
+          defaultValue='50'
+
         />
         <span className="mt-1 block bg-red-200 ps-1 italic tracking-wider text-red-700 shadow-md">
           {errors?.discount?.message}
@@ -130,7 +145,7 @@ const Form = ({ cabin = {}, setOpen }) => {
       <div className="mb-4 space-y-1.5">
         <Typography
           as="label"
-          htmlFor="password"
+          htmlFor=""
           type="small"
           color="default"
           className="darkLabel"
@@ -144,6 +159,8 @@ const Form = ({ cabin = {}, setOpen }) => {
             required: "Fill the field",
           })}
           type="text"
+          defaultValue='cabin12'
+
           className="darkInput"
         />
         <span className="mt-1 block bg-red-200 ps-1 italic tracking-wider text-red-700 shadow-md">
@@ -162,6 +179,7 @@ const Form = ({ cabin = {}, setOpen }) => {
               {...register("image", {
                 required: getValues().image ? false : "fill the field",
               })}
+
               hidden
             />
             Choose

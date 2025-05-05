@@ -17,6 +17,7 @@ const ProtectedRoute = ({ children }) => {
     [isAuthenticated, isPending, navigate],
   );
 
+
   if (isPending) return <Loading />;
 
   return (
