@@ -28,8 +28,8 @@ const Settings = () => {
       });
     },
     //
-    onError() {
-      toast.error("There's a proplem");
+    onError(er) {
+      toast.error(er.message);
     },
   });
 

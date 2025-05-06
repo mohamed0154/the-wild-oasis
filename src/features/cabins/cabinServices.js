@@ -1,17 +1,15 @@
-import supabase, { supabaseUrl } from "../../services/supabase";
+import { serverUrl } from "../../services/server-url";
 
 const storage = "/storage/v1/object/public/cabin-images//";
 
 export async function getCabins() {
-  const response = await fetch("http://127.0.0.1:8000/api/cabins", {
+  const response = await fetch(`${serverUrl}/api/cabins`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
       Authorization: localStorage.getItem("auth-token"),
     },
-    // body: JSON.stringify(cabinRow),
-    // credentials: "include",
   });
 
   const data = await response.json();
@@ -28,18 +26,15 @@ export async function getCabins() {
 
 export async function insertCabin(cabinRow) {
   try {
-    const response = await fetch(
-      "http://127.0.0.1:8000/api/admin/cabins/store",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          Authorization: localStorage.getItem("auth-token"),
-        },
-        body: cabinRow,
-        credentials: "include",
+    const response = await fetch(`${serverUrl}/api/admin/cabins/store`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: localStorage.getItem("auth-token"),
       },
-    );
+      body: cabinRow,
+      credentials: "include",
+    });
 
     const data = await response.json();
 
@@ -55,15 +50,13 @@ export async function insertCabin(cabinRow) {
 
 export async function deleteCabin(cabinId) {
   const response = await fetch(
-    "http://127.0.0.1:8000/api/admin/cabins/delete/" + cabinId,
+    `${serverUrl}/api/admin/cabins/delete/${cabinId}`,
     {
       method: "DELETE",
       headers: {
         Accept: "application/json",
         Authorization: localStorage.getItem("auth-token"),
       },
-      // body: cabin,
-      // credentials: "include",
     },
   );
   const data = await response.json();
@@ -75,18 +68,15 @@ export async function deleteCabin(cabinId) {
 }
 
 export async function updateCabinApi(cabin) {
-  const response = await fetch(
-    "http://127.0.0.1:8000/api/admin/cabins/update",
-    {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        Authorization: localStorage.getItem("auth-token"),
-      },
-      body: cabin,
-      credentials: "include",
+  const response = await fetch(`${serverUrl}/api/admin/cabins/update`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      Authorization: localStorage.getItem("auth-token"),
     },
-  );
+    body: cabin,
+    credentials: "include",
+  });
   const data = await response.json();
   if (data.errors) {
     throw new Error(`error! : ${data.message}`);
@@ -98,7 +88,7 @@ export async function updateCabinApi(cabin) {
 export async function duplicateCabin(id) {
   try {
     const response = await fetch(
-      `http://127.0.0.1:8000/api/admin/cabins/duplicate/${id}`,
+      `${serverUrl}/api/admin/cabins/duplicate/${id}`,
       {
         method: "GET",
         headers: {

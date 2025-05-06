@@ -1,8 +1,8 @@
-import supabase from "../../services/supabase";
+import { serverUrl } from "../../services/server-url";
 
 export async function login({ email, password }) {
   try {
-    const response = await fetch("http://127.0.0.1:8000/api/admin/login", {
+    const response = await fetch(`${serverUrl}/api/admin/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export async function login({ email, password }) {
 }
 
 export async function checkAuth() {
-  const response = await fetch("http://127.0.0.1:8000/api/check-auth", {
+  const response = await fetch(`${serverUrl}/api/check-auth`, {
     method: "GET",
     headers: {
       accept: "application/json",
@@ -45,7 +45,7 @@ export async function checkAuth() {
 }
 
 export async function signup(userDataStore) {
-  const response = await fetch("http://127.0.0.1:8000/api/admin/addAdmin", {
+  const response = await fetch(`${serverUrl}/api/admin/addAdmin`, {
     method: "POST",
     headers: {
       Accept: "application/json",
